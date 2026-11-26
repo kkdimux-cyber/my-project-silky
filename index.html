@@ -3,26 +3,41 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+try { const t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch {}
+</script>
 <title>Hello South Korea · 5 handy tools</title>
 <style>
 /* Liquid glass: grey studio backdrop, glossy dark and clear glass, a coloured rim and caustic glow per tool.
    Glass is concentrated on navigation, controls and results; long text sits on a calm frosted sheet. */
 :root{
-  color-scheme:light dark;
+  color-scheme:light;
   --paper:#e4e6eb;--card:#f8f9fb;--ink:#0e1018;--sub:#454d60;--line:#c9ced9;--field:#fdfdfe;--edge:#6f788c;
   --red:#a81f55;--ochre:#7d5000;--green:#0b6652;--blue:#1d4ea6;--plum:#6d34a0;
   --on-tone:#fff;--note:#fff1d2;--seal:#b3261e;
   --sheet:rgba(250,251,253,.74);--clear:linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,255,255,.42) 48%,rgba(255,255,255,.7));
   --gloss:inset 0 1px 1px #fff,inset 0 -1px 2px rgba(255,255,255,.9);
   --tone:var(--red);
+  --tabbase:transparent;
 }
-@media (prefers-color-scheme:dark){:root{
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;
   --paper:#0b0d13;--card:#171a24;--ink:#f1f3fa;--sub:#b6bed2;--line:#333a4e;--field:#10131c;--edge:#808aa5;
   --red:#ff8fb8;--ochre:#f4c15c;--green:#5fdcb8;--blue:#93b8ff;--plum:#d3a6ff;
   --on-tone:#0b0d13;--note:#37301f;--seal:#ff8a7a;
+  --tabbase:#191d2a;
   --sheet:rgba(24,28,40,.72);--clear:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.03) 48%,rgba(255,255,255,.08));
   --gloss:inset 0 1px 1px rgba(255,255,255,.35),inset 0 -1px 2px rgba(255,255,255,.14);
 }}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#0b0d13;--card:#171a24;--ink:#f1f3fa;--sub:#b6bed2;--line:#333a4e;--field:#10131c;--edge:#808aa5;
+  --red:#ff8fb8;--ochre:#f4c15c;--green:#5fdcb8;--blue:#93b8ff;--plum:#d3a6ff;
+  --on-tone:#0b0d13;--note:#37301f;--seal:#ff8a7a;
+  --tabbase:#191d2a;
+  --sheet:rgba(24,28,40,.72);--clear:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.03) 48%,rgba(255,255,255,.08));
+  --gloss:inset 0 1px 1px rgba(255,255,255,.35),inset 0 -1px 2px rgba(255,255,255,.14);
+}
 /* --h1 and --h2 are the refraction colours; they are decoration and never carry text. */
 body[data-tool="name"]{--tone:var(--red)}body[data-tool="hangul"]{--tone:var(--ochre)}body[data-tool="age"]{--tone:var(--green)}body[data-tool="skin"]{--tone:var(--blue)}body[data-tool="size"]{--tone:var(--plum)}
 body,body[data-tool="name"],[data-tab="name"]{--h1:#ff2e93;--h2:#ff9a3d}
@@ -37,7 +52,13 @@ body{margin:0;min-height:100vh;color:var(--ink);font:16px/1.65 Pretendard,system
   background-image:radial-gradient(60rem 28rem at 8% -4%,color-mix(in srgb,var(--h1) 24%,transparent),transparent 70%),radial-gradient(52rem 30rem at 100% 22%,color-mix(in srgb,var(--h2) 22%,transparent),transparent 70%),radial-gradient(46rem 26rem at 30% 100%,color-mix(in srgb,var(--h1) 16%,transparent),transparent 72%),linear-gradient(165deg,rgba(255,255,255,.28),transparent 55%);
   background-attachment:fixed}
 header,main,footer{max-width:800px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
-header{padding-top:40px}
+header{padding-top:18px}
+.topbar{display:flex;justify-content:flex-end;margin-bottom:12px}
+#themeBtn{display:inline-flex;align-items:center;gap:8px;font-size:.88rem;font-weight:600}
+#themeBtn svg{width:20px;height:20px}
+#themeBtn .sun{display:none}
+#themeBtn[data-mode="dark"] .sun{display:block}
+#themeBtn[data-mode="dark"] .moon{display:none}
 .hello{margin:0;font-size:clamp(2.4rem,9.6vw,4.4rem);font-weight:800;line-height:1.06;letter-spacing:-.045em;text-wrap:balance}
 .lead{margin:10px 0 0;color:var(--sub);max-width:60ch}
 
@@ -50,7 +71,7 @@ nav button[aria-selected="true"],button.primary,.soft,.namecard,.chips label:has
 
 nav{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:30px 0 28px}
 nav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:0;padding:12px 2px 10px;border:1.5px solid transparent;border-radius:28px;color:var(--ink);font-size:.82rem;font-weight:600;line-height:1.3;
-  background:var(--clear) padding-box,linear-gradient(135deg,#fff,var(--h1) 40%,rgba(140,150,170,.35) 62%,var(--h2)) border-box;
+  background:var(--clear) padding-box,linear-gradient(var(--tabbase),var(--tabbase)) padding-box,linear-gradient(135deg,#fff,var(--h1) 40%,rgba(140,150,170,.35) 62%,var(--h2)) border-box;
   box-shadow:var(--gloss),0 12px 18px -12px var(--h1),0 3px 10px -6px rgba(20,24,40,.35)}
 nav button .glyph{width:28px;height:28px;margin-bottom:2px;color:var(--c)}
 nav button[aria-selected="true"]{font-weight:700}
@@ -128,7 +149,7 @@ footer{color:var(--sub);font-size:.82rem;padding-top:22px;padding-bottom:max(40p
   body{background-image:none}
 }
 @media (max-width:480px){
-  header{padding-top:28px}
+  header{padding-top:12px}
   nav{gap:5px;margin:22px 0 20px}
   nav button{font-size:.72rem;border-radius:22px;padding:10px 0 9px}
   nav button .glyph{width:24px;height:24px}
@@ -146,6 +167,7 @@ footer{color:var(--sub);font-size:.82rem;padding-top:22px;padding-bottom:max(40p
 </head>
 <body>
 <header>
+  <div class="topbar"><button type="button" id="themeBtn"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.500A8.500 8.500 0 019.500 4a8.500 8.500 0 1010.500 10.500z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.500v2M12 19.500v2M2.500 12h2M19.500 12h2M5.300 5.300l1.400 1.400M17.300 17.300l1.400 1.400M5.300 18.700l1.400-1.400M17.300 6.700l1.400-1.400"/></svg><span id="themeLabel">Dark mode</span></button></div>
   <h1 class="hello">Hello South Korea</h1>
   <p class="lead">Five handy tools for getting along in Korea.</p>
   <nav role="tablist" aria-label="Tools">
@@ -531,6 +553,26 @@ $('zCat').addEventListener('change', fillSystems);
 $('zSys').addEventListener('change', () => fillValues($('zVal').value));
 $('zVal').addEventListener('change', renderSize);
 fillSystems();
+
+/* ---------- Light / dark mode ---------- */
+// The button names the mode you will switch to. Until it is pressed, the page follows the device.
+const root = document.documentElement;
+const systemDark = typeof matchMedia === 'function' ? matchMedia('(prefers-color-scheme: dark)') : null;
+const currentTheme = () => root.dataset.theme || (systemDark && systemDark.matches ? 'dark' : 'light');
+function labelTheme(){
+  const mode = currentTheme();
+  $('themeBtn').dataset.mode = mode;
+  $('themeLabel').textContent = mode === 'dark' ? 'Light mode' : 'Dark mode';
+}
+$('themeBtn').addEventListener('click', () => {
+  const next = currentTheme() === 'dark' ? 'light' : 'dark';
+  root.dataset.theme = next;
+  try { localStorage.setItem('theme', next); } catch {}
+  labelTheme();
+});
+if (systemDark) systemDark.addEventListener('change', labelTheme);
+new MutationObserver(labelTheme).observe(root, {attributes: true, attributeFilter: ['data-theme']});
+labelTheme();
 
 /* ---------- Tabs ---------- */
 const tabs = [...document.querySelectorAll('nav button')];
