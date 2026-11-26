@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hello South Korea · 5 handy tools</title>
+<style>
+/* Liquid glass: grey studio backdrop, glossy dark and clear glass, a coloured rim and caustic glow per tool.
+   Glass is concentrated on navigation, controls and results; long text sits on a calm frosted sheet. */
+:root{
+  color-scheme:light dark;
+  --paper:#e4e6eb;--card:#f8f9fb;--ink:#0e1018;--sub:#454d60;--line:#c9ced9;--field:#fdfdfe;--edge:#6f788c;
+  --red:#a81f55;--ochre:#7d5000;--green:#0b6652;--blue:#1d4ea6;--plum:#6d34a0;
+  --on-tone:#fff;--note:#fff1d2;--seal:#b3261e;
+  --sheet:rgba(250,251,253,.74);--clear:linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,255,255,.42) 48%,rgba(255,255,255,.7));
+  --gloss:inset 0 1px 1px #fff,inset 0 -1px 2px rgba(255,255,255,.9);
+  --tone:var(--red);
+}
+@media (prefers-color-scheme:dark){:root{
+  --paper:#0b0d13;--card:#171a24;--ink:#f1f3fa;--sub:#b6bed2;--line:#333a4e;--field:#10131c;--edge:#808aa5;
+  --red:#ff8fb8;--ochre:#f4c15c;--green:#5fdcb8;--blue:#93b8ff;--plum:#d3a6ff;
+  --on-tone:#0b0d13;--note:#37301f;--seal:#ff8a7a;
+  --sheet:rgba(24,28,40,.72);--clear:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.03) 48%,rgba(255,255,255,.08));
+  --gloss:inset 0 1px 1px rgba(255,255,255,.35),inset 0 -1px 2px rgba(255,255,255,.14);
+}}
+/* --h1 and --h2 are the refraction colours; they are decoration and never carry text. */
+body[data-tool="name"]{--tone:var(--red)}body[data-tool="hangul"]{--tone:var(--ochre)}body[data-tool="age"]{--tone:var(--green)}body[data-tool="skin"]{--tone:var(--blue)}body[data-tool="size"]{--tone:var(--plum)}
+body,body[data-tool="name"],[data-tab="name"]{--h1:#ff2e93;--h2:#ff9a3d}
+body[data-tool="hangul"],[data-tab="hangul"]{--h1:#ffb020;--h2:#b6e63a}
+body[data-tool="age"],[data-tab="age"]{--h1:#18d39a;--h2:#ffc53d}
+body[data-tool="skin"],[data-tab="skin"]{--h1:#17c6ff;--h2:#4d6bff}
+body[data-tool="size"],[data-tab="size"]{--h1:#8b5cff;--h2:#ff5fd2}
+[data-tab="name"]{--c:var(--red)}[data-tab="hangul"]{--c:var(--ochre)}[data-tab="age"]{--c:var(--green)}[data-tab="skin"]{--c:var(--blue)}[data-tab="size"]{--c:var(--plum)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--ink);font:16px/1.65 Pretendard,system-ui,-apple-system,"Segoe UI","Malgun Gothic",sans-serif;word-break:keep-all;overflow-wrap:break-word;
+  background-color:var(--paper);
+  background-image:radial-gradient(60rem 28rem at 8% -4%,color-mix(in srgb,var(--h1) 24%,transparent),transparent 70%),radial-gradient(52rem 30rem at 100% 22%,color-mix(in srgb,var(--h2) 22%,transparent),transparent 70%),radial-gradient(46rem 26rem at 30% 100%,color-mix(in srgb,var(--h1) 16%,transparent),transparent 72%),linear-gradient(165deg,rgba(255,255,255,.28),transparent 55%);
+  background-attachment:fixed}
+header,main,footer{max-width:800px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
+header{padding-top:40px}
+.hello{margin:0;font-size:clamp(2.4rem,9.6vw,4.4rem);font-weight:800;line-height:1.06;letter-spacing:-.045em;text-wrap:balance}
+.lead{margin:10px 0 0;color:var(--sub);max-width:60ch}
+
+/* Dark glass: gradient body, iridescent rim, light caught at the bottom edge, coloured glow underneath. */
+nav button[aria-selected="true"],button.primary,.soft,.namecard,.chips label:has(:checked),ol.steps li::before{
+  color:#fff;border:1.5px solid transparent;
+  background:linear-gradient(180deg,#343846 0%,#10121a 42%,#0b0d14 74%,#1b1e2a 100%) padding-box,
+             linear-gradient(115deg,var(--h1),rgba(255,255,255,.85) 28%,#2a2e3c 48%,var(--h2) 76%,var(--h1)) border-box;
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.55),inset 0 -9px 12px -8px var(--h1),inset -12px 0 14px -12px var(--h2),0 14px 22px -12px var(--h1),0 6px 14px -8px rgba(6,8,16,.55)}
+
+nav{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:30px 0 28px}
+nav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:0;padding:12px 2px 10px;border:1.5px solid transparent;border-radius:28px;color:var(--ink);font-size:.82rem;font-weight:600;line-height:1.3;
+  background:var(--clear) padding-box,linear-gradient(135deg,#fff,var(--h1) 40%,rgba(140,150,170,.35) 62%,var(--h2)) border-box;
+  box-shadow:var(--gloss),0 12px 18px -12px var(--h1),0 3px 10px -6px rgba(20,24,40,.35)}
+nav button .glyph{width:28px;height:28px;margin-bottom:2px;color:var(--c)}
+nav button[aria-selected="true"]{font-weight:700}
+nav button[aria-selected="true"] .glyph{color:#fff;filter:drop-shadow(0 0 6px var(--h1))}
+
+section{background:var(--sheet);-webkit-backdrop-filter:blur(22px) saturate(1.6);backdrop-filter:blur(22px) saturate(1.6);border:1px solid color-mix(in srgb,var(--edge) 28%,transparent);border-radius:32px;box-shadow:var(--gloss),0 24px 48px -30px rgba(14,18,34,.55);padding:30px clamp(16px,4.5vw,38px) 28px}
+section[hidden]{display:none}
+h2{margin:0;font-size:clamp(1.35rem,4.5vw,1.75rem);font-weight:800;letter-spacing:-.025em;line-height:1.3}
+h3{margin:32px 0 10px;font-size:1.12rem}
+.sub{color:var(--sub);margin:8px 0 0}
+
+button{font:inherit;cursor:pointer;min-height:48px;border:1px solid var(--edge);border-radius:999px;padding:9px 20px;background:var(--clear);box-shadow:var(--gloss),0 6px 12px -8px rgba(20,24,40,.45);color:var(--ink);transition:filter .16s,transform .16s}
+button:hover{filter:brightness(1.1) saturate(1.2)}
+button:active{transform:scale(.97)}
+button.primary{min-height:54px;font-weight:700;padding-left:34px;padding-right:34px}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.row{display:flex;flex-wrap:wrap;gap:14px;margin:22px 0 20px;align-items:start}
+label{display:flex;flex-direction:column;gap:6px;font-size:.88rem;font-weight:600;color:var(--sub);flex:1 1 180px;min-width:0}
+input,select{font:inherit;font-weight:500;color:var(--ink);background:var(--field);border:1px solid var(--edge);border-radius:999px;min-height:52px;padding:8px 18px;width:100%;min-width:0;box-shadow:inset 0 2px 5px rgba(20,24,40,.13),0 8px 14px -12px rgba(20,24,40,.5)}
+.datehint{font-size:.8rem;font-weight:400;line-height:1.4;padding-left:19px;margin-top:-2px}
+
+.box{border-radius:24px;padding:18px;margin:14px 0}
+.box:not(.soft){border:1px solid color-mix(in srgb,var(--edge) 55%,transparent);background:var(--clear);box-shadow:var(--gloss),0 10px 18px -14px rgba(20,24,40,.5)}
+.soft .sub,.namecard .sub{color:#c6cde0}
+.soft button{color:#fff;border-color:rgba(255,255,255,.65);background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.04));box-shadow:inset 0 1px 1px rgba(255,255,255,.5)}
+.soft :focus-visible{outline-color:#fff}
+#copyBtn{margin-top:12px}
+.note{background:color-mix(in srgb,var(--note) 88%,transparent);border:1px solid color-mix(in srgb,var(--edge) 22%,transparent);box-shadow:var(--gloss);border-radius:22px;padding:13px 18px;font-size:.9rem;margin:22px 0 0}
+.big{font-size:2.3rem;font-weight:700;line-height:1.25;font-variant-numeric:tabular-nums}
+.big[lang="ko"]{font-family:"Noto Serif KR","Nanum Myeongjo",AppleMyungjo,Batang,serif}
+
+/* Name result: a glass name card signed with a seal */
+.namecard{display:grid;grid-template-columns:1fr auto;gap:4px 16px;align-items:start;border-radius:28px;padding:22px 22px 24px;margin:20px 0 0}
+.namecard .big{font-size:clamp(2.6rem,11vw,3.6rem);letter-spacing:.06em}
+.namecard p{margin:6px 0 0;grid-column:1/-1}
+.namecard .roman{margin:0;grid-column:1;font-weight:700}
+.namecard .head{grid-column:1}
+.seal{grid-column:2;grid-row:1/span 2;display:grid;place-items:center;width:68px;height:68px;border:3px solid #ff8a7a;border-radius:18px;color:#ff8a7a;font:700 1.25rem/1.15 "Noto Serif KR","Nanum Myeongjo",AppleMyungjo,Batang,serif;text-align:center;transform:rotate(-5deg);box-shadow:0 0 18px -4px #ff5a48}
+@media (prefers-reduced-motion:no-preference){
+  .seal{animation:stamp .35s ease-out both}
+  @keyframes stamp{from{opacity:0;transform:scale(1.5) rotate(-5deg)}to{opacity:1;transform:scale(1) rotate(-5deg)}}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chips label{flex:0 0 auto;flex-direction:row;align-items:center;gap:8px;min-height:46px;border:1px solid var(--edge);border-radius:999px;padding:7px 18px;color:var(--ink);font-weight:500;cursor:pointer;background:var(--clear);box-shadow:var(--gloss),0 6px 12px -9px rgba(20,24,40,.5)}
+.chips label:has(:checked){font-weight:600}
+.chips label:has(:focus-visible){outline:3px solid var(--ink);outline-offset:3px}
+.chips input{width:18px;height:18px;min-height:0;margin:0;padding:0;box-shadow:none;accent-color:var(--h1)}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:16px 0}
+.stats .box{margin:0}
+.stats .big{font-size:2.8rem;color:var(--tone)}
+.stats .soft .big{color:#fff;text-shadow:0 0 18px var(--h1)}
+.stats .sub{display:block;margin:0;font-size:.85rem}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.92rem;font-variant-numeric:tabular-nums}
+th{border-bottom:2px solid var(--tone)}
+th,td{padding:10px 8px;text-align:center}
+td{border-bottom:1px solid var(--line)}
+.wrap th,.wrap td{text-align:left;vertical-align:top}
+tr.hit{background:color-mix(in srgb,var(--h1) 18%,transparent);font-weight:700}
+ol.steps{list-style:none;counter-reset:step;margin:0;padding:0}
+ol.steps li{counter-increment:step;position:relative;padding:0 0 20px 52px}
+ol.steps li::before{content:counter(step);position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:.9rem;box-shadow:inset 0 1px 1px rgba(255,255,255,.6),inset 0 -6px 8px -5px var(--h1),0 6px 12px -6px var(--h1)}
+ol.steps li:not(:last-child)::after{content:"";position:absolute;left:17px;top:42px;bottom:5px;width:2px;background:linear-gradient(var(--h1),var(--h2));opacity:.55}
+details{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:600;padding:12px 0;min-height:48px}
+summary::marker{color:var(--tone)}
+details p{margin:0 0 16px;max-width:65ch}
+footer{color:var(--sub);font-size:.82rem;padding-top:22px;padding-bottom:max(40px,env(safe-area-inset-bottom))}
+@media (prefers-reduced-transparency:reduce){
+  section{background:var(--card);-webkit-backdrop-filter:none;backdrop-filter:none}
+  .box:not(.soft),.chips label:not(:has(:checked)){background:var(--card)}
+  body{background-image:none}
+}
+@media (max-width:480px){
+  header{padding-top:28px}
+  nav{gap:5px;margin:22px 0 20px}
+  nav button{font-size:.72rem;border-radius:22px;padding:10px 0 9px}
+  nav button .glyph{width:24px;height:24px}
+  main{padding-left:8px;padding-right:8px}
+  section{border-radius:26px}
+  th,td{padding:9px 4px;font-size:.84rem}
+  .row label{flex-basis:100%}
+  .stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .stats .box{padding:13px 3px;border-radius:18px;text-align:center;font-size:.8rem;line-height:1.4}
+  .stats .big{font-size:clamp(1.2rem,6.2vw,2rem);white-space:nowrap}
+  .stats .sub{font-size:.72rem}
+  .namecard{padding:18px 18px 20px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1 class="hello">Hello South Korea</h1>
+  <p class="lead">Five handy tools for getting along in Korea.</p>
+  <nav role="tablist" aria-label="Tools">
+    <button role="tab" id="tab-name" aria-controls="name" data-tab="name" aria-label="Korean name generator"><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.6-1.7 5.4-1.7 6 0M14 10h4M14 14h4"/></svg>Name</button>
+    <button role="tab" id="tab-hangul" aria-controls="hangul" data-tab="hangul" aria-label="My name in Hangul"><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1-4L16.5 4.500a2.100 2.100 0 013 3L8 19l-4 1zM14.500 6.500l3 3"/></svg>Hangul</button>
+    <button role="tab" id="tab-age" aria-controls="age" data-tab="age" aria-label="Korean age calculator"><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M8 3v4M16 3v4M8 15h3"/></svg>Age</button>
+    <button role="tab" id="tab-skin" aria-controls="skin" data-tab="skin" aria-label="K-beauty routine"><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6.500 7 6.500 11.500a6.500 6.500 0 01-13 0C5.500 10 12 3 12 3zM9 15a3 3 0 003 3"/></svg>Skincare</button>
+    <button role="tab" id="tab-size" aria-controls="size" data-tab="size" aria-label="Size converter"><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.500" y="8" width="19" height="8" rx="1.500"/><path d="M6.500 8v4M10 8v3M13.500 8v4M17 8v3"/></svg>Sizes</button>
+  </nav>
+</header>
+<main>
+
+<section id="name" role="tabpanel" aria-labelledby="tab-name">
+  <h2>Korean Name Generator</h2>
+  <p class="sub">Enter your name, your birthday, or both. The same input always gives the same result.</p>
+  <form id="nameForm">
+    <div class="row">
+      <label>Your name (English)<input id="gName" placeholder="e.g. Emma" maxlength="40"></label>
+      <label>Birthday (optional)<input id="gBirth" type="date"><span class="datehint" hidden>Year - Month - Day</span></label>
+      <label>Style<select id="gStyle"><option value="any">Any</option><option value="f">Feminine</option><option value="m">Masculine</option><option value="u">Gender-neutral</option></select></label>
+    </div>
+    <button class="primary">Suggest names</button>
+  </form>
+  <div id="nameOut" aria-live="polite"></div>
+  <div class="note">Just for fun. This is not <i>saju</i> (Korean fortune-telling) or professional naming. One Hangul name can be written with many different Hanja (Chinese characters), each with its own meaning. We show one possible combination.</div>
+</section>
+
+<section id="hangul" role="tabpanel" aria-labelledby="tab-hangul">
+  <h2>Write My Name in Hangul</h2>
+  <p class="sub">Hangul follows how a name <b>sounds</b>, not how it is spelled.</p>
+  <form id="hanForm">
+    <div class="row">
+      <label>Name in English letters<input id="hName" placeholder="e.g. Michael Johnson" maxlength="60"></label>
+    </div>
+    <button class="primary">Convert</button>
+  </form>
+  <div id="hanOut" aria-live="polite"></div>
+</section>
+
+<section id="age" role="tabpanel" aria-labelledby="tab-age">
+  <h2>Korean Age Calculator</h2>
+  <p class="sub">See all three ways of counting age.</p>
+  <div class="row">
+    <label>Birthday<input id="aBirth" type="date"><span class="datehint" hidden>Year - Month - Day</span></label>
+    <label>Age on this date<input id="aOn" type="date"><span class="datehint" hidden>Year - Month - Day</span></label>
+  </div>
+  <div id="ageOut" aria-live="polite"></div>
+
+  <h3>Why is this so confusing?</h3>
+  <div class="scroll"><table class="wrap">
+    <tr><th>System</th><th>How it works</th><th>Where you meet it</th></tr>
+    <tr><td><b>International</b> (man nai)</td><td>0 at birth, +1 on each birthday</td><td>Official standard for legal and administrative matters</td></tr>
+    <tr><td><b>Year age</b> (yeon nai)</td><td>This year − birth year</td><td>Some laws: alcohol, tobacco, military service</td></tr>
+    <tr><td><b>Traditional</b> (seneun nai)</td><td>1 at birth, +1 every January 1</td><td>Older custom, still heard in casual talk</td></tr>
+  </table></div>
+  <details><summary>Didn't Korea abolish “Korean age”?</summary><p>On June 28, 2023, a law confirmed international age as the default for legal and administrative matters. It did not ban people from using other counts in daily life, and some laws still use year age.</p></details>
+  <details><summary>When can I buy alcohol or cigarettes?</summary><p>Under the Youth Protection Act, from January 1 of the year you turn 19. Your birthday does not matter. Shops may ask for ID.</p></details>
+  <details><summary>What about school and the military?</summary><p>Children normally start elementary school in March of the year after they turn 6. Military service rules (which mainly apply to Korean men) are also organized by birth year.</p></details>
+  <details><summary>Why do Koreans ask how old I am so quickly?</summary><p>Age affects speech level and what you call each other, such as <i>eonni</i>, <i>oppa</i>, <i>nuna</i> and <i>hyeong</i>. People often ask “What year were you born?” (<i>Myeot nyeonsaeng-ieyo?</i>). Answering with your birth year avoids confusion.</p></details>
+</section>
+
+<section id="skin" role="tabpanel" aria-labelledby="tab-skin">
+  <h2>K-Beauty Routine Builder</h2>
+  <p class="sub">Pick what you own and we put it in order. You do <b>not</b> need all of these, and there is no required “10 steps”.</p>
+  <div class="row">
+    <label>Time of day<select id="sTime"><option value="am">Morning</option><option value="pm">Evening</option></select></label>
+    <label>Skin type<select id="sType"><option value="normal">Normal / combination</option><option value="dry">Dry</option><option value="oily">Oily</option><option value="sensitive">Sensitive</option></select></label>
+  </div>
+  <div class="chips" id="sProducts"></div>
+  <p><button type="button" id="sBasic">Basics only</button></p>
+  <div id="skinOut" aria-live="polite"></div>
+  <div class="note">General information, not medical advice. The usual guide is thinnest to thickest, but follow each product label. Patch-test new products and add one at a time. If you have a skin condition, are pregnant, or use prescription products, ask a doctor.</div>
+</section>
+
+<section id="size" role="tabpanel" aria-labelledby="tab-size">
+  <h2>Korean Size Converter</h2>
+  <p class="sub">Korean shoe sizes are in millimetres (mm), based on foot length.</p>
+  <div class="row">
+    <label>Category<select id="zCat"></select></label>
+    <label>I know my size in<select id="zSys"></select></label>
+    <label>Size<select id="zVal"></select></label>
+  </div>
+  <div id="sizeOut" aria-live="polite"></div>
+  <div class="scroll"><table id="sizeTable"></table></div>
+  <div class="note" id="sizeNote"></div>
+</section>
+
+</main>
+<footer>All results are for reference. Check official sources for legal matters and each brand's size chart before buying. Nothing you type leaves your browser.</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+// Korean-language browsers label empty date fields in Korean, so add the English meaning underneath.
+if ((navigator.language || '').startsWith('ko')) document.querySelectorAll('.datehint').forEach(el => el.hidden = false);
+
+/* ---------- Hangul helpers ---------- */
+const CHO = [...'ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ'];
+const JUNG = [...'ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ'];
+const JONG = ['', ...'ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ'];
+const CHO_R = ['g','kk','n','d','tt','r','m','b','pp','s','ss','','j','jj','ch','k','t','p','h'];
+const JUNG_R = ['a','ae','ya','yae','eo','e','yeo','ye','o','wa','wae','oe','yo','u','wo','we','wi','yu','eu','ui','i'];
+const JONG_R = {'':'','ㄱ':'k','ㄴ':'n','ㄷ':'t','ㄹ':'l','ㅁ':'m','ㅂ':'p','ㅅ':'t','ㅇ':'ng'};
+const compose = (c, v, j = '') => String.fromCharCode(0xAC00 + (CHO.indexOf(c) * 21 + JUNG.indexOf(v)) * 28 + JONG.indexOf(j));
+function decompose(ch){
+  const n = ch.charCodeAt(0) - 0xAC00;
+  if (n < 0 || n > 11171) return null;
+  return [Math.floor(n / 588), Math.floor(n % 588 / 28), n % 28];
+}
+
+/* ---------- 2. English name → Hangul ---------- */
+const KNOWN = Object.fromEntries(`aaron:에런 adam:애덤 alex:알렉스 alexander:알렉산더 alice:앨리스 amanda:어맨다 amber:앰버 amelia:어밀리아 amy:에이미 andrea:앤드리아 andrew:앤드루 angela:앤절라 anna:애나 anthony:앤서니 ashley:애슐리 ava:에이바 barbara:바버라 benjamin:벤저민 brian:브라이언 brandon:브랜던 carlos:카를로스 caroline:캐럴라인 catherine:캐서린 charles:찰스 charlotte:샬럿 chloe:클로이 chris:크리스 christina:크리스티나 christopher:크리스토퍼 claire:클레어 daniel:대니얼 david:데이비드 diana:다이애나 dylan:딜런 edward:에드워드 eleanor:엘리너 elizabeth:엘리자베스 ella:엘라 emily:에밀리 emma:에마 eric:에릭 ethan:이선 eva:에바 evelyn:에벌린 george:조지 grace:그레이스 hannah:해나 harry:해리 helen:헬렌 henry:헨리 isabella:이저벨라 jack:잭 jacob:제이컵 james:제임스 jane:제인 jason:제이슨 jennifer:제니퍼 jessica:제시카 john:존 jonathan:조너선 jordan:조던 jose:호세 joseph:조지프 joshua:조슈아 julia:줄리아 justin:저스틴 karen:캐런 kate:케이트 kevin:케빈 kim:킴 kyle:카일 laura:로라 lauren:로런 leo:리오 liam:리엄 lily:릴리 linda:린다 lisa:리사 lucas:루커스 lucy:루시 luke:루크 maria:마리아 mark:마크 mary:메리 mason:메이슨 matthew:매슈 megan:메건 mia:미아 michael:마이클 michelle:미셸 nathan:네이선 nicholas:니컬러스 nicole:니콜 noah:노아 oliver:올리버 olivia:올리비아 patricia:퍼트리샤 patrick:패트릭 paul:폴 peter:피터 rachel:레이철 rebecca:리베카 richard:리처드 robert:로버트 ryan:라이언 sam:샘 samantha:서맨사 samuel:새뮤얼 sarah:세라 sara:세라 scott:스콧 sean:숀 sofia:소피아 sophia:소피아 sophie:소피 stephanie:스테퍼니 stephen:스티븐 steven:스티븐 susan:수전 taylor:테일러 thomas:토머스 tiffany:티퍼니 timothy:티머시 tom:톰 tyler:타일러 victoria:빅토리아 william:윌리엄 zoe:조이 smith:스미스 johnson:존슨 williams:윌리엄스 brown:브라운 jones:존스 garcia:가르시아 miller:밀러 davis:데이비스 rodriguez:로드리게스 martinez:마르티네스 wilson:윌슨 anderson:앤더슨 lee:리 martin:마틴 white:화이트 thompson:톰프슨 clark:클라크 lewis:루이스 walker:워커 hall:홀 young:영 king:킹 wright:라이트 green:그린 baker:베이커`.split(' ').map(p => p.split(':')));
+
+// Spelling-based approximation for names that are not in the list.
+function approximate(word){
+  let w = word.toLowerCase().replace(/[^a-z]/g, '');
+  if (!w) return '';
+  w = w.replace(/^kn/, 'n').replace(/^wr/, 'r').replace(/ck/g, 'k').replace(/ph/g, 'f')
+       .replace(/qu/g, 'kw').replace(/x/g, 'ks').replace(/([aeiou])gh/g, '$1')
+       .replace(/c(?=[eiy])/g, 's').replace(/ch/g, 'C').replace(/c/g, 'k')
+       .replace(/sh/g, 'S').replace(/th/g, 's').replace(/q/g, 'k')
+       .replace(/([bdfgjkmnprstvz])\1/g, '$1');
+  // "magic e": kate, mike, rose
+  w = w.replace(/a([bdfgklmnpstvz])e$/, 'A$1').replace(/i([bdfgklmnpstvz])e$/, 'I$1')
+       .replace(/o([bdfgklmnpstvz])e$/, 'O$1').replace(/([^aeiouy])e$/, (m, c) => w.length > 3 ? c : m);
+
+  const V = {A:['ㅔ','ㅣ'], I:['ㅏ','ㅣ'], O:['ㅗ'], ee:['ㅣ'], ea:['ㅣ'], oo:['ㅜ'], ai:['ㅔ','ㅣ'], ay:['ㅔ','ㅣ'], ey:['ㅣ'], ie:['ㅣ'], au:['ㅗ'], aw:['ㅗ'], ou:['ㅏ','ㅜ'], oa:['ㅗ'], oi:['ㅗ','ㅣ'], oy:['ㅗ','ㅣ'], a:['ㅏ'], e:['ㅔ'], i:['ㅣ'], o:['ㅗ'], u:['ㅜ'], y:['ㅣ']};
+  const toks = [];
+  for (let i = 0; i < w.length;){
+    const two = w.slice(i, i + 2), c = w[i], next = w[i + 1] || '';
+    const isV = x => /[aeiouyAIO]/.test(x);
+    // r-coloured vowels when no vowel follows
+    if (/^(ar|er|ir|or|ur)$/.test(two) && !/[aeiouyr]/.test(w[i + 2] || '')){
+      toks.push({v: {ar:'ㅏ', er:'ㅓ', ir:'ㅓ', or:'ㅗ', ur:'ㅓ'}[two]}); i += 2; continue;
+    }
+    if ((c === 'y' || c === 'w') && isV(next) && !(c === 'y' && i > 0 && !isV(w[i - 1]) && !next)){ toks.push({g: c}); i++; continue; }
+    if (V[two]){ V[two].forEach(v => toks.push({v})); i += 2; continue; }
+    if (V[c]){ V[c].forEach(v => toks.push({v})); i++; continue; }
+    if (two === 'ng' && !isV(w[i + 2] || '')){ toks.push({c: 'ng'}); i += 2; continue; }
+    toks.push({c}); i++;
+  }
+
+  const ON = {b:'ㅂ', d:'ㄷ', f:'ㅍ', g:'ㄱ', h:'ㅎ', j:'ㅈ', k:'ㅋ', l:'ㄹ', m:'ㅁ', n:'ㄴ', p:'ㅍ', r:'ㄹ', s:'ㅅ', t:'ㅌ', v:'ㅂ', z:'ㅈ', C:'ㅊ', S:'ㅅ', ng:'ㅇ'};
+  const Y = {'ㅏ':'ㅑ','ㅔ':'ㅖ','ㅣ':'ㅣ','ㅗ':'ㅛ','ㅜ':'ㅠ','ㅓ':'ㅕ'};
+  const W = {'ㅏ':'ㅘ','ㅔ':'ㅞ','ㅣ':'ㅟ','ㅗ':'ㅝ','ㅜ':'ㅜ','ㅓ':'ㅝ'};
+  const out = [];
+  const addJong = j => {
+    const last = out[out.length - 1];
+    if (last && !last.j){ last.j = j; return true; }
+    return false;
+  };
+  let onset = null, glide = null, prevVowel = false;
+  for (let i = 0; i < toks.length; i++){
+    const t = toks[i], nx = toks[i + 1];
+    if (t.g){ glide = t.g; continue; }
+    if (t.v){
+      let v = t.v;
+      if (glide === 'w') v = W[v] || v;
+      else if (glide === 'y' || onset === 'S') v = Y[v] || v;
+      out.push({c: onset ? ON[onset] || 'ㅇ' : 'ㅇ', v, j: ''});
+      onset = glide = null; prevVowel = true; continue;
+    }
+    const c = t.c, beforeV = nx && (nx.v || nx.g);
+    if (c === 'l'){
+      if (nx && nx.c === 'l') continue;
+      if (beforeV){ if (out.length) addJong('ㄹ'); onset = 'l'; }
+      else if (!addJong('ㄹ')) out.push({c:'ㅇ', v:'ㅡ', j:'ㄹ'});
+    } else if (beforeV) onset = c;
+    else if (c === 'm' || c === 'n' || c === 'ng'){
+      const j = {m:'ㅁ', n:'ㄴ', ng:'ㅇ'}[c];
+      if (!(prevVowel && addJong(j))) out.push({c: ON[c], v:'ㅡ', j:''});
+    }
+    else if (c === 'r' || (c === 'h' && prevVowel)) { /* not pronounced here */ }
+    else out.push({c: ON[c] || 'ㅇ', v: (c === 'j' || c === 'C' || c === 'S') ? 'ㅣ' : 'ㅡ', j: ''});
+    prevVowel = false;
+  }
+  return out.map(s => compose(s.c, s.v, s.j)).join('');
+}
+
+function toHangul(word){
+  const key = word.toLowerCase().replace(/[^a-z]/g, '');
+  if (Object.hasOwn(KNOWN, key)) return {text: KNOWN[key], exact: true};
+  return {text: approximate(key), exact: false};
+}
+
+function syllableRows(text){
+  return [...text].map(ch => {
+    const d = decompose(ch);
+    if (!d) return '';
+    const [c, v, j] = d, jc = JONG[j];
+    const parts = [CHO[c], JUNG[v], jc].filter(Boolean).join(' + ');
+    return `<tr><td><b>${ch}</b></td><td>${parts}</td><td>${CHO_R[c]}${JUNG_R[v]}${JONG_R[jc] ?? ''}</td></tr>`;
+  }).join('');
+}
+
+$('hanForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const words = $('hName').value.normalize('NFD').replace(/[̀-ͯ]/g, '').trim().split(/[\s\-]+/).filter(w => /[a-z]/i.test(w));
+  if (!words.length){ $('hanOut').innerHTML = '<div class="note">Please type your name using English letters.</div>'; return; }
+  const res = words.map(toHangul);
+  const full = res.map(r => r.text).join(' ');
+  const guessed = words.filter((w, i) => !res[i].exact);
+  $('hanOut').innerHTML = `
+    <div class="box soft"><div class="big" lang="ko">${full}</div><button type="button" id="copyBtn">Copy</button></div>
+    ${guessed.length ? `<div class="note"><b>Approximate:</b> “${esc(guessed.join(', '))}” is not in our name list, so we guessed from the spelling. It can be wrong. Try typing it the way it sounds (for example “Shawn” instead of an unusual spelling), and ask a Korean speaker to check before using it for anything important.</div>` : '<p class="sub">Matched a common transcription from our name list. Your own pronunciation may differ.</p>'}
+    <h3>Syllable by syllable</h3>
+    <div class="scroll"><table><tr><th>Block</th><th>Letters</th><th>Romanization</th></tr>${syllableRows(full)}</table></div>
+    <p class="sub">For passports, visas and bank accounts, use the spelling on your official documents.</p>`;
+  $('copyBtn').onclick = async ev => {
+    const btn = ev.target;
+    try { await navigator.clipboard.writeText(full); btn.textContent = 'Copied!'; }
+    catch { btn.textContent = 'Select the text to copy'; }
+  };
+});
+
+/* ---------- 1. Korean name generator ---------- */
+// [given name, style, romanization, hanja ('' = native Korean word), meaning]
+const NAMES = [
+ ['서연','f','Seo-yeon','瑞姸','瑞 auspicious + 姸 beautiful'],
+ ['서윤','f','Seo-yun','瑞潤','瑞 auspicious + 潤 to enrich, to shine'],
+ ['하윤','f','Ha-yun','夏潤','夏 summer + 潤 to enrich, to shine'],
+ ['수아','f','Su-a','秀雅','秀 outstanding + 雅 elegant'],
+ ['예은','f','Ye-eun','藝恩','藝 art, talent + 恩 grace'],
+ ['채원','f','Chae-won','彩媛','彩 colorful + 媛 graceful woman'],
+ ['다은','f','Da-eun','多恩','多 abundant + 恩 grace'],
+ ['소희','f','So-hui','昭熙','昭 bright + 熙 radiant'],
+ ['은지','f','Eun-ji','恩智','恩 grace + 智 wisdom'],
+ ['민준','m','Min-jun','敏俊','敏 quick-witted + 俊 talented'],
+ ['서준','m','Seo-jun','瑞俊','瑞 auspicious + 俊 talented'],
+ ['도윤','m','Do-yun','道潤','道 the way + 潤 to enrich'],
+ ['지호','m','Ji-ho','智浩','智 wisdom + 浩 vast'],
+ ['준우','m','Jun-u','俊佑','俊 talented + 佑 to help'],
+ ['현우','m','Hyeon-u','賢佑','賢 wise + 佑 to help'],
+ ['건우','m','Geon-u','建宇','建 to build + 宇 universe'],
+ ['우진','m','U-jin','宇眞','宇 universe + 眞 truth'],
+ ['태민','m','Tae-min','泰敏','泰 great, peaceful + 敏 quick-witted'],
+ ['승현','m','Seung-hyeon','勝賢','勝 victory + 賢 wise'],
+ ['지우','u','Ji-u','智宇','智 wisdom + 宇 universe'],
+ ['지민','u','Ji-min','智敏','智 wisdom + 敏 quick-witted'],
+ ['유진','u','Yu-jin','裕眞','裕 abundance + 眞 truth'],
+ ['현서','u','Hyeon-seo','賢瑞','賢 wise + 瑞 auspicious'],
+ ['지원','u','Ji-won','志遠','志 aspiration + 遠 far-reaching'],
+ ['하늘','u','Ha-neul','','“sky”'],
+ ['슬기','u','Seul-gi','','“wisdom”'],
+ ['보람','u','Bo-ram','','“a rewarding, worthwhile feeling”'],
+ ['아름','f','A-reum','','from <i>areumdapda</i>, “beautiful”'],
+ ['나래','f','Na-rae','','“wings”'],
+ ['다솜','f','Da-som','','an old word for “love”'],
+ ['가람','u','Ga-ram','','an old word for “river”'],
+ ['한결','u','Han-gyeol','','“steadfast, always the same”'],
+ ['이슬','f','I-seul','','“dew”'],
+ ['누리','u','Nu-ri','','an old word for “world”'],
+ ['마루','m','Ma-ru','','“ridge, peak”'],
+ ['바다','u','Ba-da','','“sea”']
+];
+const SURNAMES = [['김','Kim','金'],['이','Lee','李'],['박','Park','朴'],['최','Choi','崔'],['정','Jeong','鄭'],['강','Kang','姜'],['조','Cho','趙'],['윤','Yoon','尹'],['장','Jang','張'],['한','Han','韓']];
+
+function hash(s){ let h = 2166136261; for (const ch of s){ h ^= ch.codePointAt(0); h = Math.imul(h, 16777619); } return h >>> 0; }
+
+function suggest(name, birth, style){
+  const seed = name.trim().toLowerCase() + '|' + birth;
+  const sound = name ? decompose(toHangul(name.trim().split(/\s+/)[0]).text[0] || ' ') : null;
+  const pool = NAMES.filter(n => style === 'any' || n[1] === style)
+    .map(n => ({n, same: !!sound && decompose(n[0][0])[0] === sound[0] && sound[0] !== 11, h: hash(seed + n[0])}))
+    .sort((a, b) => a.h - b.h);
+  // Put one name with the same first sound at the top, if there is one.
+  const match = pool.find(p => p.same);
+  const picks = (match ? [match, ...pool.filter(p => p !== match)] : pool).slice(0, 3);
+  return picks.map((p, i) => ({name: p.n, same: p === match, surname: SURNAMES[(hash(seed) + i * 3) % SURNAMES.length]}));
+}
+
+$('nameForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = $('gName').value.trim(), birth = $('gBirth').value;
+  if (!name && !birth){ $('nameOut').innerHTML = '<div class="note">Enter a name or a birthday first.</div>'; return; }
+  $('nameOut').innerHTML = suggest(name, birth, $('gStyle').value).map(({name: [g,, rom, hanja, mean], surname: [s, sr, sh], same}) => `
+    <article class="namecard">
+      <div class="head big" lang="ko">${s}${g}</div>
+      <span class="seal" lang="ko" aria-hidden="true">${[...g].join('<br>')}</span>
+      <p class="roman">${sr} ${rom}${same ? '<span class="sub"> (starts with a similar sound to your name)</span>' : ''}</p>
+      <p>${hanja ? `Hanja: <span lang="ko">${hanja}</span> — ${mean}` : `Native Korean name (no Hanja): ${mean}`}</p>
+      <p class="sub">Family name ${sr} (<span lang="ko">${sh}</span>), one of Korea's common surnames. It comes first.</p>
+    </article>`).join('');
+});
+
+/* ---------- 3. Age calculator ---------- */
+function ages(birth, on){
+  const [by, bm, bd] = birth.split('-').map(Number), [y, m, d] = on.split('-').map(Number);
+  const year = y - by;
+  const intl = year - (m < bm || (m === bm && d < bd) ? 1 : 0);
+  return {intl, year, trad: year + 1, birthYear: by};
+}
+function renderAge(){
+  const b = $('aBirth').value, on = $('aOn').value;
+  if (!b || !on){ $('ageOut').innerHTML = '<p class="sub">Choose your birthday to see the result.</p>'; return; }
+  if (b > on){ $('ageOut').innerHTML = '<div class="note">The birthday is after the selected date. Please check the dates.</div>'; return; }
+  const a = ages(b, on), y = Number(on.slice(0, 4));
+  $('ageOut').innerHTML = `<div class="stats">
+    <div class="box soft"><div class="big">${a.intl}</div>International age<br><span class="sub">The official standard</span></div>
+    <div class="box"><div class="big">${a.year}</div>Year age<br><span class="sub">${y} − ${a.birthYear}</span></div>
+    <div class="box"><div class="big">${a.trad}</div>Traditional age<br><span class="sub">The old “Korean age”</span></div></div>
+    <p>In ${y}, your birth year ${a.year >= 19 ? '<b>meets</b>' : 'does <b>not</b> meet'} the Youth Protection Act age line for buying alcohol and tobacco.</p>
+    <p class="sub">Say it in Korean: <i>“Jeoneun ${String(a.birthYear).slice(2)}-nyeonsaeng-ieyo.”</i> (I was born in ’${String(a.birthYear).slice(2)}.)</p>`;
+}
+$('aOn').value = new Intl.DateTimeFormat('en-CA', {timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit'}).format(new Date());
+$('aBirth').addEventListener('input', renderAge);
+$('aOn').addEventListener('input', renderAge);
+renderAge();
+
+/* ---------- 4. Skincare routine ---------- */
+// id, label, when, tip. Array order = application order.
+const STEPS = [
+ ['oil','Cleansing oil / balm','pm','First half of a double cleanse. Loosens makeup and sunscreen. Rinse well.'],
+ ['cleanser','Water-based cleanser','both','Use lukewarm water and don\'t scrub hard.'],
+ ['exfoliant','Exfoliant (AHA/BHA)','pm','Not every day at first. Start 1–2 times a week and follow the label.'],
+ ['toner','Toner','both','Pat on gently.'],
+ ['essence','Essence','both','A light, watery layer.'],
+ ['serum','Serum / ampoule','both','Targets a specific concern.'],
+ ['mask','Sheet mask','pm','Occasional extra. Follow the time on the package.'],
+ ['retinoid','Retinoid / retinol','pm','Evening only. Introduce slowly. Avoid during pregnancy unless a doctor says otherwise.'],
+ ['eye','Eye cream','both','Optional. Use a small amount.'],
+ ['moisturizer','Moisturizer','both','Seals in the lighter layers.'],
+ ['sleep','Sleeping mask','pm','Last evening step, a few nights a week. It can replace a heavy cream.'],
+ ['sunscreen','Sunscreen (SPF 30+)','am','Last skincare step, before makeup. Use enough and reapply about every 2 hours outdoors.']
+];
+const BASIC = ['oil','cleanser','moisturizer','sunscreen'];
+const TYPE_TIP = {normal:'Use lighter textures on oily areas and richer ones on dry areas.', dry:'Look for gentle cleansers and richer creams. In the morning, rinsing with water may be enough.', oily:'Lightweight gel textures often feel better. Don\'t skip moisturizer.', sensitive:'Keep it short, favor fragrance-free products, and be careful with exfoliants and retinoids.'};
+$('sProducts').innerHTML = STEPS.map(([id, label]) => `<label><input type="checkbox" value="${id}" ${BASIC.includes(id) ? 'checked' : ''}>${label}</label>`).join('');
+function routine(time, have){ return STEPS.filter(s => have.includes(s[0]) && (s[2] === 'both' || s[2] === time)); }
+function renderSkin(){
+  const time = $('sTime').value;
+  const have = [...document.querySelectorAll('#sProducts input:checked')].map(i => i.value);
+  const list = routine(time, have);
+  const skipped = STEPS.filter(s => have.includes(s[0]) && !list.includes(s));
+  const warn = [];
+  if (time === 'pm' && have.includes('exfoliant') && have.includes('retinoid')) warn.push('Exfoliant and retinoid together can irritate. Use them on <b>different nights</b>.');
+  if (time === 'am' && !have.includes('sunscreen')) warn.push('Add sunscreen to your morning routine.');
+  $('skinOut').innerHTML = `<h3>${time === 'am' ? 'Morning' : 'Evening'} routine</h3>
+    ${list.length ? `<ol class="steps">${list.map(([, label,, tip]) => `<li><b>${label}</b><br>${tip}</li>`).join('')}</ol>` : '<p class="sub">Select at least one product for this time of day.</p>'}
+    ${skipped.length ? `<p class="sub">Left out at this time: ${skipped.map(s => s[1]).join(', ')}</p>` : ''}
+    ${warn.map(w => `<div class="note">${w}</div>`).join('')}
+    <p><b>Skin type tip:</b> ${TYPE_TIP[$('sType').value]}</p>`;
+}
+['sTime','sType','sProducts'].forEach(id => $(id).addEventListener('change', renderSkin));
+$('sBasic').onclick = () => { document.querySelectorAll('#sProducts input').forEach(i => i.checked = BASIC.includes(i.value)); renderSkin(); };
+renderSkin();
+
+/* ---------- 5. Size converter ---------- */
+const shoe = rows => rows.split(' ').map(r => r.split('/'));
+const SIZES = {
+  wshoe: {label:'Women\'s shoes', cols:['KR (mm)','US Women','EU'],
+    rows: shoe('220/5/35 225/5.5/35.5 230/6/36 235/6.5/37 240/7/38 245/7.5/38.5 250/8/39 255/8.5/40 260/9/40.5 265/9.5/41 270/10/42'),
+    note:'Approximate. Brands differ, sometimes by a full size. Many Korean shoes come only in 5 mm or 10 mm steps. Measure your foot in mm and check the brand chart.'},
+  mshoe: {label:'Men\'s shoes', cols:['KR (mm)','US Men','EU'],
+    rows: shoe('240/6/38 245/6.5/39 250/7/40 255/7.5/40.5 260/8/41 265/8.5/42 270/9/42.5 275/9.5/43 280/10/44 285/10.5/44.5 290/11/45 295/11.5/45.5 300/12/46'),
+    note:'Approximate. Brands differ, sometimes by a full size. Measure your foot in mm and check the brand chart.'},
+  wtop: {label:'Women\'s clothing', cols:['KR','US','EU'],
+    rows: shoe('44/0–2/32–34 55/2–4/34–36 66/6–8/36–38 77/8–10/38–40 88/10–12/40–42'),
+    note:'Rough ranges only. Conversion charts disagree, and fit varies a lot between brands. Compare bust, waist and hip measurements. “Free size” means one size only, not “fits everyone”.'},
+  mtop: {label:'Men\'s tops', cols:['KR','US (chest, in)','EU'],
+    rows: shoe('90/35–36/46 95/37–38/48 100/39–40/50 105/41–42/52 110/43–44/54'),
+    note:'Rough estimate. The Korean number relates to chest size in cm. US here is chest in inches (cm ÷ 2.54) and EU is about half the chest in cm. Charts and brands disagree, and S/M/L letters don\'t match reliably across countries. Check garment measurements.'}
+};
+$('zCat').innerHTML = Object.entries(SIZES).map(([k, v]) => `<option value="${k}">${v.label}</option>`).join('');
+function renderSize(){
+  const set = SIZES[$('zCat').value], sys = Number($('zSys').value), i = Number($('zVal').value), row = set.rows[i];
+  $('sizeOut').innerHTML = `<div class="stats">${set.cols.map((c, n) => `<div class="box ${n === sys ? '' : 'soft'}"><div class="big">${row[n]}</div>${c}</div>`).join('')}</div>`;
+  $('sizeTable').innerHTML = `<tr>${set.cols.map(c => `<th>${c}</th>`).join('')}</tr>` + set.rows.map((r, n) => `<tr class="${n === i ? 'hit' : ''}">${r.map(x => `<td>${x}</td>`).join('')}</tr>`).join('');
+  $('sizeNote').textContent = set.note;
+}
+function fillValues(keep){
+  const set = SIZES[$('zCat').value], sys = Number($('zSys').value);
+  $('zVal').innerHTML = set.rows.map((r, i) => `<option value="${i}">${r[sys]}</option>`).join('');
+  $('zVal').value = keep ?? Math.floor(set.rows.length / 2);
+  renderSize();
+}
+function fillSystems(){
+  $('zSys').innerHTML = SIZES[$('zCat').value].cols.map((c, i) => `<option value="${i}">${c}</option>`).join('');
+  fillValues();
+}
+$('zCat').addEventListener('change', fillSystems);
+$('zSys').addEventListener('change', () => fillValues($('zVal').value));
+$('zVal').addEventListener('change', renderSize);
+fillSystems();
+
+/* ---------- Tabs ---------- */
+const tabs = [...document.querySelectorAll('nav button')];
+function show(id){
+  if (!tabs.some(t => t.dataset.tab === id)) id = 'name';
+  tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.tab === id));
+  document.querySelectorAll('main section').forEach(s => s.hidden = s.id !== id);
+  tabs.forEach(t => t.tabIndex = t.dataset.tab === id ? 0 : -1);
+  document.body.dataset.tool = id;
+}
+function pick(t){ history.replaceState(null, '', '#' + t.dataset.tab); show(t.dataset.tab); }
+tabs.forEach((t, i) => {
+  t.onclick = () => pick(t);
+  t.onkeydown = e => {
+    const to = {ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1}[e.key];
+    if (to === undefined) return;
+    e.preventDefault();
+    const next = tabs[(to + tabs.length) % tabs.length];
+    next.focus(); pick(next);
+  };
+});
+addEventListener('hashchange', () => show(location.hash.slice(1)));
+show(location.hash.slice(1));
+</script>
+</body>
+</html>
