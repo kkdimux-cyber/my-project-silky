@@ -6,7 +6,8 @@ const currentTheme = () => root.dataset.theme || (systemDark && systemDark.match
 function labelTheme(){
   const mode = currentTheme();
   $('themeBtn').dataset.mode = mode;
-  $('themeLabel').textContent = mode === 'dark' ? 'Light mode' : 'Dark mode';
+  // Only the home page loads the language scripts; other pages stay in English.
+  $('themeLabel').textContent = typeof t === 'function' ? t(mode === 'dark' ? 'theme.light' : 'theme.dark') : mode === 'dark' ? 'Light mode' : 'Dark mode';
 }
 $('themeBtn').addEventListener('click', () => {
   const next = currentTheme() === 'dark' ? 'light' : 'dark';
@@ -17,4 +18,4 @@ $('themeBtn').addEventListener('click', () => {
 if (systemDark) systemDark.addEventListener('change', labelTheme);
 new MutationObserver(labelTheme).observe(root, {attributes: true, attributeFilter: ['data-theme']});
 labelTheme();
-
+if (typeof onLang === 'function') onLang(labelTheme);

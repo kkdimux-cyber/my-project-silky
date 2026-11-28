@@ -7,116 +7,119 @@
 try { const t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch {}
 </script>
 <title>Hello South Korea · Korean name, Hangul, age and size tools</title>
-<meta name="description" content="Free tools and guides about Korea: Korean name ideas, your name in Hangul, Korean age, skincare order and size conversion.">
+<meta name="description" data-i18n-content="meta.desc" content="Free tools and guides about Korea: Korean name ideas, your name in Hangul, Korean age, skincare order and size conversion.">
 <link rel="canonical" href="https://my-project-silky.pages.dev/">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <header>
-  <div class="topbar"><button type="button" id="themeBtn"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.500A8.500 8.500 0 019.500 4a8.500 8.500 0 1010.500 10.500z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.500v2M12 19.500v2M2.500 12h2M19.500 12h2M5.300 5.300l1.400 1.400M17.300 17.300l1.400 1.400M5.300 18.700l1.400-1.400M17.300 6.700l1.400-1.400"/></svg><span id="themeLabel">Dark mode</span></button></div>
+  <div class="topbar"><select id="langSel" aria-label="Language"><option value="en" lang="en">English</option><option value="ko" lang="ko">한국어</option><option value="ja" lang="ja">日本語</option><option value="zh-Hans" lang="zh-Hans">简体中文</option><option value="zh-Hant" lang="zh-Hant">繁體中文</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="pt" lang="pt">Português</option><option value="it" lang="it">Italiano</option><option value="ru" lang="ru">Русский</option></select><button type="button" id="themeBtn"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.500A8.500 8.500 0 019.500 4a8.500 8.500 0 1010.500 10.500z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.500v2M12 19.500v2M2.500 12h2M19.500 12h2M5.300 5.300l1.400 1.400M17.300 17.300l1.400 1.400M5.300 18.700l1.400-1.400M17.300 6.700l1.400-1.400"/></svg><span id="themeLabel">Dark mode</span></button></div>
   <h1 class="hello">Hello South Korea</h1>
-  <p class="lead">Five handy tools for getting along in Korea.</p>
-  <nav role="tablist" aria-label="Tools">
-    <button role="tab" id="tab-name" aria-controls="name" data-tab="name" aria-label="Korean name generator"><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.6-1.7 5.4-1.7 6 0M14 10h4M14 14h4"/></svg>Name</button>
-    <button role="tab" id="tab-hangul" aria-controls="hangul" data-tab="hangul" aria-label="My name in Hangul"><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1-4L16.5 4.500a2.100 2.100 0 013 3L8 19l-4 1zM14.500 6.500l3 3"/></svg>Hangul</button>
-    <button role="tab" id="tab-age" aria-controls="age" data-tab="age" aria-label="Korean age calculator"><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M8 3v4M16 3v4M8 15h3"/></svg>Age</button>
-    <button role="tab" id="tab-skin" aria-controls="skin" data-tab="skin" aria-label="K-beauty routine"><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6.500 7 6.500 11.500a6.500 6.500 0 01-13 0C5.500 10 12 3 12 3zM9 15a3 3 0 003 3"/></svg>Skincare</button>
-    <button role="tab" id="tab-size" aria-controls="size" data-tab="size" aria-label="Size converter"><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.500" y="8" width="19" height="8" rx="1.500"/><path d="M6.500 8v4M10 8v3M13.500 8v4M17 8v3"/></svg>Sizes</button>
+  <p class="lead" data-i18n="lead">Five handy tools for getting along in Korea.</p>
+  <nav role="tablist" aria-label="Tools" data-i18n-aria="nav.tools">
+    <button role="tab" id="tab-name" aria-controls="name" data-tab="name" aria-label="Korean name generator" data-i18n-aria="nav.nameAria"><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.6-1.7 5.4-1.7 6 0M14 10h4M14 14h4"/></svg><span data-i18n="nav.name">Name</span></button>
+    <button role="tab" id="tab-hangul" aria-controls="hangul" data-tab="hangul" aria-label="My name in Hangul" data-i18n-aria="nav.hangulAria"><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1-4L16.5 4.500a2.100 2.100 0 013 3L8 19l-4 1zM14.500 6.500l3 3"/></svg><span data-i18n="nav.hangul">Hangul</span></button>
+    <button role="tab" id="tab-age" aria-controls="age" data-tab="age" aria-label="Korean age calculator" data-i18n-aria="nav.ageAria"><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M8 3v4M16 3v4M8 15h3"/></svg><span data-i18n="nav.age">Age</span></button>
+    <button role="tab" id="tab-skin" aria-controls="skin" data-tab="skin" aria-label="K-beauty routine" data-i18n-aria="nav.skinAria"><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6.500 7 6.500 11.500a6.500 6.500 0 01-13 0C5.500 10 12 3 12 3zM9 15a3 3 0 003 3"/></svg><span data-i18n="nav.skin">Skincare</span></button>
+    <button role="tab" id="tab-size" aria-controls="size" data-tab="size" aria-label="Size converter" data-i18n-aria="nav.sizeAria"><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.500" y="8" width="19" height="8" rx="1.500"/><path d="M6.500 8v4M10 8v3M13.500 8v4M17 8v3"/></svg><span data-i18n="nav.size">Sizes</span></button>
   </nav>
 </header>
 <main>
 
 <section id="name" role="tabpanel" aria-labelledby="tab-name">
-  <h2>Korean Name Generator</h2>
-  <p class="sub">Enter your name, your birthday, or both. The same input always gives the same result.</p>
+  <h2 data-i18n="name.h2">Korean Name Generator</h2>
+  <p class="sub" data-i18n="name.sub">Enter your name, your birthday, or both. The same input always gives the same result.</p>
   <form id="nameForm">
     <div class="row">
-      <label>Your name (English)<input id="gName" placeholder="e.g. Emma" maxlength="40"></label>
-      <label>Birthday (optional)<input id="gBirth" type="date"><span class="datehint" hidden>Year - Month - Day</span></label>
-      <label>Style<select id="gStyle"><option value="any">Any</option><option value="f">Feminine</option><option value="m">Masculine</option><option value="u">Gender-neutral</option></select></label>
+      <label><span data-i18n="name.lName">Your name (English)</span><input id="gName" placeholder="e.g. Emma" data-i18n-ph="name.ph" maxlength="40"></label>
+      <label><span data-i18n="name.lBirth">Birthday (optional)</span><input id="gBirth" type="date"><span class="datehint" data-i18n="hint.date" hidden>Year - Month - Day</span></label>
+      <label><span data-i18n="name.lStyle">Style</span><select id="gStyle"><option value="any" data-i18n="name.any">Any</option><option value="f" data-i18n="name.f">Feminine</option><option value="m" data-i18n="name.m">Masculine</option><option value="u" data-i18n="name.u">Gender-neutral</option></select></label>
     </div>
-    <button class="primary">Suggest names</button>
+    <button class="primary" data-i18n="name.btn">Suggest names</button>
   </form>
   <div id="nameOut" aria-live="polite"></div>
-  <div class="note">Just for fun. This is not <i>saju</i> (Korean fortune-telling) or professional naming. One Hangul name can be written with many different Hanja (Chinese characters), each with its own meaning. We show one possible combination.</div>
-  <p class="more">Read the guide: <a href="guides/korean-names.html">How Korean Names Work</a></p>
+  <div class="note" data-i18n="name.note">Just for fun. This is not <i>saju</i> (Korean fortune-telling) or professional naming. One Hangul name can be written with many different Hanja (Chinese characters), each with its own meaning. We show one possible combination.</div>
+  <p class="more"><span data-i18n="guide.read">Read the guide:</span> <a href="guides/korean-names.html" data-i18n="g.names">How Korean Names Work</a></p>
 </section>
 
 <section id="hangul" role="tabpanel" aria-labelledby="tab-hangul">
-  <h2>Write My Name in Hangul</h2>
-  <p class="sub">Hangul follows how a name <b>sounds</b>, not how it is spelled.</p>
+  <h2 data-i18n="han.h2">Write My Name in Hangul</h2>
+  <p class="sub" data-i18n="han.sub">Hangul follows how a name <b>sounds</b>, not how it is spelled.</p>
   <form id="hanForm">
     <div class="row">
-      <label>Name in English letters<input id="hName" placeholder="e.g. Michael Johnson" maxlength="60"></label>
+      <label><span data-i18n="han.lName">Name in English letters</span><input id="hName" placeholder="e.g. Michael Johnson" data-i18n-ph="han.ph" maxlength="60"></label>
     </div>
-    <button class="primary">Convert</button>
+    <button class="primary" data-i18n="han.btn">Convert</button>
   </form>
   <div id="hanOut" aria-live="polite"></div>
-  <p class="more">Read the guide: <a href="guides/name-in-hangul.html">How to Write a Foreign Name in Hangul</a></p>
+  <p class="more"><span data-i18n="guide.read">Read the guide:</span> <a href="guides/name-in-hangul.html" data-i18n="g.hangul">How to Write a Foreign Name in Hangul</a></p>
 </section>
 
 <section id="age" role="tabpanel" aria-labelledby="tab-age">
-  <h2>Korean Age Calculator</h2>
-  <p class="sub">See all three ways of counting age.</p>
+  <h2 data-i18n="age.h2">Korean Age Calculator</h2>
+  <p class="sub" data-i18n="age.sub">See all three ways of counting age.</p>
   <div class="row">
-    <label>Birthday<input id="aBirth" type="date"><span class="datehint" hidden>Year - Month - Day</span></label>
-    <label>Age on this date<input id="aOn" type="date"><span class="datehint" hidden>Year - Month - Day</span></label>
+    <label><span data-i18n="age.lBirth">Birthday</span><input id="aBirth" type="date"><span class="datehint" data-i18n="hint.date" hidden>Year - Month - Day</span></label>
+    <label><span data-i18n="age.lOn">Age on this date</span><input id="aOn" type="date"><span class="datehint" data-i18n="hint.date" hidden>Year - Month - Day</span></label>
   </div>
   <div id="ageOut" aria-live="polite"></div>
 
-  <h3>Why is this so confusing?</h3>
+  <h3 data-i18n="age.why">Why is this so confusing?</h3>
   <div class="scroll"><table class="wrap">
-    <tr><th>System</th><th>How it works</th><th>Where you meet it</th></tr>
-    <tr><td><b>International</b> (man nai)</td><td>0 at birth, +1 on each birthday</td><td>Official standard for legal and administrative matters</td></tr>
-    <tr><td><b>Year age</b> (yeon nai)</td><td>This year − birth year</td><td>Some laws: alcohol, tobacco, military service</td></tr>
-    <tr><td><b>Traditional</b> (seneun nai)</td><td>1 at birth, +1 every January 1</td><td>Older custom, still heard in casual talk</td></tr>
+    <tr><th data-i18n="age.thSystem">System</th><th data-i18n="age.thHow">How it works</th><th data-i18n="age.thWhere">Where you meet it</th></tr>
+    <tr><td data-i18n="age.r1a"><b>International</b> (man nai)</td><td data-i18n="age.r1b">0 at birth, +1 on each birthday</td><td data-i18n="age.r1c">Official standard for legal and administrative matters</td></tr>
+    <tr><td data-i18n="age.r2a"><b>Year age</b> (yeon nai)</td><td data-i18n="age.r2b">This year − birth year</td><td data-i18n="age.r2c">Some laws: alcohol, tobacco, military service</td></tr>
+    <tr><td data-i18n="age.r3a"><b>Traditional</b> (seneun nai)</td><td data-i18n="age.r3b">1 at birth, +1 every January 1</td><td data-i18n="age.r3c">Older custom, still heard in casual talk</td></tr>
   </table></div>
-  <details><summary>Didn't Korea abolish “Korean age”?</summary><p>On June 28, 2023, a law confirmed international age as the default for legal and administrative matters. It did not ban people from using other counts in daily life, and some laws still use year age.</p></details>
-  <details><summary>When can I buy alcohol or cigarettes?</summary><p>Under the Youth Protection Act, from January 1 of the year you turn 19. Your birthday does not matter. Shops may ask for ID.</p></details>
-  <details><summary>What about school and the military?</summary><p>Children normally start elementary school in March of the year after they turn 6. Military service rules (which mainly apply to Korean men) are also organized by birth year.</p></details>
-  <details><summary>Why do Koreans ask how old I am so quickly?</summary><p>Age affects speech level and what you call each other, such as <i>eonni</i>, <i>oppa</i>, <i>nuna</i> and <i>hyeong</i>. People often ask “What year were you born?” (<i>Myeot nyeonsaeng-ieyo?</i>). Answering with your birth year avoids confusion.</p></details>
-  <p class="more">Read the guide: <a href="guides/korean-age.html">How Age Is Counted in Korea</a></p>
+  <details><summary data-i18n="age.q1">Didn't Korea abolish “Korean age”?</summary><p data-i18n="age.a1">On June 28, 2023, a law confirmed international age as the default for legal and administrative matters. It did not ban people from using other counts in daily life, and some laws still use year age.</p></details>
+  <details><summary data-i18n="age.q2">When can I buy alcohol or cigarettes?</summary><p data-i18n="age.a2">Under the Youth Protection Act, from January 1 of the year you turn 19. Your birthday does not matter. Shops may ask for ID.</p></details>
+  <details><summary data-i18n="age.q3">What about school and the military?</summary><p data-i18n="age.a3">Children normally start elementary school in March of the year after they turn 6. Military service rules (which mainly apply to Korean men) are also organized by birth year.</p></details>
+  <details><summary data-i18n="age.q4">Why do Koreans ask how old I am so quickly?</summary><p data-i18n="age.a4">Age affects speech level and what you call each other, such as <i>eonni</i>, <i>oppa</i>, <i>nuna</i> and <i>hyeong</i>. People often ask “What year were you born?” (<i>Myeot nyeonsaeng-ieyo?</i>). Answering with your birth year avoids confusion.</p></details>
+  <p class="more"><span data-i18n="guide.read">Read the guide:</span> <a href="guides/korean-age.html" data-i18n="g.age">How Age Is Counted in Korea</a></p>
 </section>
 
 <section id="skin" role="tabpanel" aria-labelledby="tab-skin">
-  <h2>K-Beauty Routine Builder</h2>
-  <p class="sub">Pick what you own and we put it in order. You do <b>not</b> need all of these, and there is no required “10 steps”.</p>
+  <h2 data-i18n="skin.h2">K-Beauty Routine Builder</h2>
+  <p class="sub" data-i18n="skin.sub">Pick what you own and we put it in order. You do <b>not</b> need all of these, and there is no required “10 steps”.</p>
   <div class="row">
-    <label>Time of day<select id="sTime"><option value="am">Morning</option><option value="pm">Evening</option></select></label>
-    <label>Skin type<select id="sType"><option value="normal">Normal / combination</option><option value="dry">Dry</option><option value="oily">Oily</option><option value="sensitive">Sensitive</option></select></label>
+    <label><span data-i18n="skin.lTime">Time of day</span><select id="sTime"><option value="am" data-i18n="skin.am">Morning</option><option value="pm" data-i18n="skin.pm">Evening</option></select></label>
+    <label><span data-i18n="skin.lType">Skin type</span><select id="sType"><option value="normal" data-i18n="skin.normal">Normal / combination</option><option value="dry" data-i18n="skin.dry">Dry</option><option value="oily" data-i18n="skin.oily">Oily</option><option value="sensitive" data-i18n="skin.sensitive">Sensitive</option></select></label>
   </div>
   <div class="chips" id="sProducts"></div>
-  <p><button type="button" id="sBasic">Basics only</button></p>
+  <p><button type="button" id="sBasic" data-i18n="skin.basic">Basics only</button></p>
   <div id="skinOut" aria-live="polite"></div>
-  <div class="note">General information, not medical advice. The usual guide is thinnest to thickest, but follow each product label. Patch-test new products and add one at a time. If you have a skin condition, are pregnant, or use prescription products, ask a doctor.</div>
-  <p class="more">Read the guide: <a href="guides/skincare-order.html">What Order to Apply Skincare Products</a></p>
+  <div class="note" data-i18n="skin.note">General information, not medical advice. The usual guide is thinnest to thickest, but follow each product label. Patch-test new products and add one at a time. If you have a skin condition, are pregnant, or use prescription products, ask a doctor.</div>
+  <p class="more"><span data-i18n="guide.read">Read the guide:</span> <a href="guides/skincare-order.html" data-i18n="g.skin">What Order to Apply Skincare Products</a></p>
 </section>
 
 <section id="size" role="tabpanel" aria-labelledby="tab-size">
-  <h2>Korean Size Converter</h2>
-  <p class="sub">Korean shoe sizes are in millimetres (mm), based on foot length.</p>
+  <h2 data-i18n="size.h2">Korean Size Converter</h2>
+  <p class="sub" data-i18n="size.sub">Korean shoe sizes are in millimetres (mm), based on foot length.</p>
   <div class="row">
-    <label>Category<select id="zCat"></select></label>
-    <label>I know my size in<select id="zSys"></select></label>
-    <label>Size<select id="zVal"></select></label>
+    <label><span data-i18n="size.lCat">Category</span><select id="zCat"></select></label>
+    <label><span data-i18n="size.lSys">I know my size in</span><select id="zSys"></select></label>
+    <label><span data-i18n="size.lVal">Size</span><select id="zVal"></select></label>
   </div>
   <div id="sizeOut" aria-live="polite"></div>
   <div class="scroll"><table id="sizeTable"></table></div>
   <div class="note" id="sizeNote"></div>
-  <p class="more">Read the guide: <a href="guides/korean-sizes.html">Korean Shoe and Clothing Sizes</a></p>
+  <p class="more"><span data-i18n="guide.read">Read the guide:</span> <a href="guides/korean-sizes.html" data-i18n="g.sizes">Korean Shoe and Clothing Sizes</a></p>
 </section>
 <aside class="sheet">
-  <h2>Guides to Korea</h2>
-  <ul><li><a href="guides/korean-age.html">How Age Is Counted in Korea</a></li><li><a href="guides/korean-names.html">How Korean Names Work</a></li><li><a href="guides/name-in-hangul.html">How to Write a Foreign Name in Hangul</a></li><li><a href="guides/korean-sizes.html">Korean Shoe and Clothing Sizes</a></li><li><a href="guides/skincare-order.html">What Order to Apply Skincare Products</a></li></ul>
+  <h2 data-i18n="guides.h2">Guides to Korea</h2>
+  <ul><li><a href="guides/korean-age.html" data-i18n="g.age">How Age Is Counted in Korea</a></li><li><a href="guides/korean-names.html" data-i18n="g.names">How Korean Names Work</a></li><li><a href="guides/name-in-hangul.html" data-i18n="g.hangul">How to Write a Foreign Name in Hangul</a></li><li><a href="guides/korean-sizes.html" data-i18n="g.sizes">Korean Shoe and Clothing Sizes</a></li><li><a href="guides/skincare-order.html" data-i18n="g.skin">What Order to Apply Skincare Products</a></li></ul>
 </aside>
 
 </main>
 <footer>
-  All results are for reference. Check official sources for legal matters and each brand's size chart before buying. Nothing you type leaves your browser.
-  <nav aria-label="Site"><ul class="sitelinks"><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="privacy.html">Privacy Policy</a></li></ul></nav>
+  <span data-i18n="footer.text">All results are for reference. Check official sources for legal matters and each brand's size chart before buying. Nothing you type leaves your browser.</span>
+  <nav aria-label="Site"><ul class="sitelinks"><li><a href="about.html" data-i18n="footer.about">About</a></li><li><a href="contact.html" data-i18n="footer.contact">Contact</a></li><li><a href="privacy.html" data-i18n="footer.privacy">Privacy Policy</a></li></ul></nav>
 </footer>
 
 <script src="js/common.js"></script>
+<script>const I18N = {};</script>
+<script src="js/lang/en.js"></script>
+<script src="js/i18n.js"></script>
 <script src="js/hangul.js"></script>
 <script src="js/names.js"></script>
 <script src="js/age.js"></script>
@@ -124,5 +127,6 @@ try { const t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark'
 <script src="js/size.js"></script>
 <script src="js/theme.js"></script>
 <script src="js/tabs.js"></script>
+<script>startLang();</script>
 </body>
 </html>

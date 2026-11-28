@@ -97,23 +97,31 @@ function syllableRows(text){
   }).join('');
 }
 
-$('hanForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const words = $('hName').value.normalize('NFD').replace(/[̀-ͯ]/g, '').trim().split(/[\s\-]+/).filter(w => /[a-z]/i.test(w));
-  if (!words.length){ $('hanOut').innerHTML = '<div class="note">Please type your name using English letters.</div>'; return; }
+let lastHangulName = null;
+function renderHangul(){
+  if (lastHangulName === null) return;
+  const words = lastHangulName.normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().split(/[\s\-]+/).filter(w => /[a-z]/i.test(w));
+  if (!words.length){ $('hanOut').innerHTML = `<div class="note">${t('han.empty')}</div>`; return; }
   const res = words.map(toHangul);
   const full = res.map(r => r.text).join(' ');
   const guessed = words.filter((w, i) => !res[i].exact);
   $('hanOut').innerHTML = `
-    <div class="box soft"><div class="big" lang="ko">${full}</div><button type="button" id="copyBtn">Copy</button></div>
-    ${guessed.length ? `<div class="note"><b>Approximate:</b> “${esc(guessed.join(', '))}” is not in our name list, so we guessed from the spelling. It can be wrong. Try typing it the way it sounds (for example “Shawn” instead of an unusual spelling), and ask a Korean speaker to check before using it for anything important.</div>` : '<p class="sub">Matched a common transcription from our name list. Your own pronunciation may differ.</p>'}
-    <h3>Syllable by syllable</h3>
-    <div class="scroll"><table><tr><th>Block</th><th>Letters</th><th>Romanization</th></tr>${syllableRows(full)}</table></div>
-    <p class="sub">For passports, visas and bank accounts, use the spelling on your official documents.</p>`;
+    <div class="box soft"><div class="big" lang="ko">${full}</div><button type="button" id="copyBtn">${t('han.copy')}</button></div>
+    ${guessed.length ? `<div class="note"><b>${t('han.approxLabel')}</b> ${t('han.approx', {names: esc(guessed.join(', '))})}</div>` : `<p class="sub">${t('han.exact')}</p>`}
+    <h3>${t('han.syllables')}</h3>
+    <div class="scroll"><table><tr><th>${t('han.block')}</th><th>${t('han.letters')}</th><th>${t('han.roman')}</th></tr>${syllableRows(full)}</table></div>
+    <p class="sub">${t('han.docs')}</p>`;
   $('copyBtn').onclick = async ev => {
     const btn = ev.target;
-    try { await navigator.clipboard.writeText(full); btn.textContent = 'Copied!'; }
-    catch { btn.textContent = 'Select the text to copy'; }
+    try { await navigator.clipboard.writeText(full); btn.textContent = t('han.copied'); }
+    catch { btn.textContent = t('han.selectCopy'); }
   };
+}
+
+$('hanForm').addEventListener('submit', e => {
+  e.preventDefault();
+  lastHangulName = $('hName').value;
+  renderHangul();
 });
+onLang(renderHangul);
 

@@ -7,6 +7,8 @@ Static site, no build step. Main address: https://my-project-silky.pages.dev/ (C
 | `index.html` | Markup only (plus the small early theme script) |
 | `css/style.css` | All styles |
 | `js/common.js` | Shared helpers (load first) |
+| `js/i18n.js` | Language selection and text replacement on the home page |
+| `js/lang/*.js` | One file per language (11); `en.js` holds script text, the others also hold home-page text |
 | `js/hangul.js` | Hangul helpers, English name to Hangul |
 | `js/names.js` | Korean name generator (uses hangul.js) |
 | `js/age.js` | Age calculator |
@@ -26,4 +28,5 @@ Static site, no build step. Main address: https://my-project-silky.pages.dev/ (C
 - Never put ads on `404.html` or other pages without real content. Keep ads less prominent than the content.
 - Add new top-level files to the `git add` line in `deploy.cmd`.
 - When a file passes about 300 lines, split it by feature and update this table.
-- Deploy: `.\deploy "message"` from `main`. It pushes `main` and mirrors it to `gh-pages`. Run only when the user asks to deploy.
+- Deploy: `.\deploy "message"` from `main`. It pushes `main` and mirrors it to `gh-pages`. Deploy without asking once a finished change passes checks (user instruction, 2026-11-28), then confirm the live site. Never deploy half-done or failing work.
+- Home-page text is translated. When you change English text in `index.html` or `js/lang/en.js`, update every file in `js/lang/`. Guides and info pages stay in English.

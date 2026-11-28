@@ -54,17 +54,31 @@ function suggest(name, birth, style){
   return picks.map((p, i) => ({name: p.n, same: p === match, surname: SURNAMES[(hash(seed) + i * 3) % SURNAMES.length]}));
 }
 
-$('nameForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const name = $('gName').value.trim(), birth = $('gBirth').value;
-  if (!name && !birth){ $('nameOut').innerHTML = '<div class="note">Enter a name or a birthday first.</div>'; return; }
-  $('nameOut').innerHTML = suggest(name, birth, $('gStyle').value).map(({name: [g,, rom, hanja, mean], surname: [s, sr, sh], same}) => `
+// English meanings live in NAMES. Other languages gloss each Hanja character instead.
+function meaning(given, hanja, english){
+  const d = I18N[lang];
+  if (lang === 'en' || !d) return english;
+  return hanja ? [...hanja].map(c => `${c} ${d.hanja[c]}`).join(' + ') : d.native[given];
+}
+
+let lastNameQuery = null;
+function renderNames(){
+  if (!lastNameQuery) return;
+  const {name, birth, style} = lastNameQuery;
+  if (!name && !birth){ $('nameOut').innerHTML = `<div class="note">${t('names.empty')}</div>`; return; }
+  $('nameOut').innerHTML = suggest(name, birth, style).map(({name: [g,, rom, hanja, mean], surname: [s, sr, sh], same}) => `
     <article class="namecard">
       <div class="head big" lang="ko">${s}${g}</div>
       <span class="seal" lang="ko" aria-hidden="true">${[...g].join('<br>')}</span>
-      <p class="roman">${sr} ${rom}${same ? '<span class="sub"> (starts with a similar sound to your name)</span>' : ''}</p>
-      <p>${hanja ? `Hanja: <span lang="ko">${hanja}</span> — ${mean}` : `Native Korean name (no Hanja): ${mean}`}</p>
-      <p class="sub">Family name ${sr} (<span lang="ko">${sh}</span>), one of Korea's common surnames. It comes first.</p>
+      <p class="roman">${sr} ${rom}${same ? `<span class="sub"> ${t('names.similar')}</span>` : ''}</p>
+      <p>${hanja ? t('names.hanja', {hanja: `<span lang="ko">${hanja}</span>`, mean: meaning(g, hanja, mean)}) : t('names.native', {mean: meaning(g, hanja, mean)})}</p>
+      <p class="sub">${t('names.family', {name: sr, hanja: `<span lang="ko">${sh}</span>`})}</p>
     </article>`).join('');
-});
+}
 
+$('nameForm').addEventListener('submit', e => {
+  e.preventDefault();
+  lastNameQuery = {name: $('gName').value.trim(), birth: $('gBirth').value, style: $('gStyle').value};
+  renderNames();
+});
+onLang(renderNames);
