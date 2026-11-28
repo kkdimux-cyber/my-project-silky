@@ -12,7 +12,7 @@ if not "%BRANCH%"=="main" (
 
 rem Upload only site files, project notes and changes to files git already tracks.
 git add -u || goto :fail
-git add -- index.html about.html contact.html privacy.html sitemap.xml robots.txt 404.html guides css js CLAUDE.md deploy.cmd .gitattributes || goto :fail
+git add -- index.html about.html contact.html privacy.html sitemap.xml robots.txt 404.html favicon.svg guides css js CLAUDE.md deploy.cmd .gitattributes || goto :fail
 git diff --cached --quiet
 if errorlevel 1 (git commit -m "%MSG%" || goto :fail)
 

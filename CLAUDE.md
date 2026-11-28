@@ -18,6 +18,7 @@ Static site, no build step. Main address: https://my-project-silky.pages.dev/ (C
 | `js/tabs.js` | Tab switching (load last) |
 | `about.html`, `contact.html`, `privacy.html` | Info pages |
 | `guides/*.html` | One guide article per tool |
+| `favicon.svg` | Browser tab icon |
 | `404.html`, `robots.txt` | Not-found page (keeps Cloudflare Pages from serving the home page for missing paths) and crawler rules |
 | `sitemap.xml` | Page list; update when adding a page or changing the domain |
 
