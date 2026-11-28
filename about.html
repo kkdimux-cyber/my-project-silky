@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+try { const t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch {}
+</script>
+<title>About Hello South Korea · Hello South Korea</title>
+<meta name="description" content="What Hello South Korea is, how its five tools work, and what their limits are.">
+<link rel="canonical" href="https://my-project-silky.pages.dev/about">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <div class="topbar"><button type="button" id="themeBtn"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.500A8.500 8.500 0 019.500 4a8.500 8.500 0 1010.500 10.500z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.500v2M12 19.500v2M2.500 12h2M19.500 12h2M5.300 5.300l1.400 1.400M17.300 17.300l1.400 1.400M5.300 18.700l1.400-1.400M17.300 6.700l1.400-1.400"/></svg><span id="themeLabel">Dark mode</span></button></div>
+  <p class="crumb"><a href="index.html">← Hello South Korea</a></p>
+</header>
+<main>
+<article class="sheet">
+<h1>About Hello South Korea</h1>
+<p>Hello South Korea is a small, free site for people who are learning about Korea, visiting, or living there. It has five tools and a short guide to go with each.</p>
+<h2>How the tools work</h2>
+<ul>
+<li><b>Korean name generator:</b> picks from a fixed list of names, based on what you type. The same input gives the same result. If a listed name starts with a similar sound to yours, it is shown first.</li>
+<li><b>Name in Hangul:</b> looks your name up in a built-in list. If it is not there, it guesses from the spelling and tells you that the result is approximate.</li>
+<li><b>Age calculator:</b> shows international age, year age and traditional age for any date.</li>
+<li><b>Skincare routine builder:</b> puts the products you select into a common order.</li>
+<li><b>Size converter:</b> shows approximate conversions from a reference table.</li>
+</ul>
+<h2>Limits</h2>
+<p>Results are for reference only. This is not legal, medical or professional naming advice. For legal matters, check official sources. Before you buy clothes or shoes, check the brand's own size chart.</p>
+<h2>Your input</h2>
+<p>The tools run in your browser. The names and dates you type are not sent to us. See the <a href="privacy.html">Privacy Policy</a>.</p>
+</article>
+<aside class="sheet">
+<h2>Guides</h2>
+<ul><li><a href="guides/korean-age.html">How Age Is Counted in Korea</a></li><li><a href="guides/korean-names.html">How Korean Names Work</a></li><li><a href="guides/name-in-hangul.html">How to Write a Foreign Name in Hangul</a></li><li><a href="guides/korean-sizes.html">Korean Shoe and Clothing Sizes</a></li><li><a href="guides/skincare-order.html">What Order to Apply Skincare Products</a></li></ul>
+</aside>
+</main>
+<footer>
+  <nav aria-label="Site"><ul class="sitelinks"><li><a href="index.html">Tools</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="privacy.html">Privacy Policy</a></li></ul></nav>
+</footer>
+<script src="js/common.js"></script>
+<script src="js/theme.js"></script>
+</body>
+</html>
